@@ -1,0 +1,14 @@
+.tb, #gbar, #guser, .gbh {display:none;}
+
+#cnt {
+	width: 380px !important;
+	min-width: 380px !important;
+}
+
+.dct-srch-otr {
+	width: 100% !important;
+}
+
+.rt-sct-exst {
+	width: 100% !important;
+}
