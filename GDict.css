@@ -12,3 +12,7 @@
 .rt-sct-exst {
 	width: 100% !important;
 }
+
+.dct-rt-sct, .dscl-dct, .dscl-glb {
+    display: none;
+}
