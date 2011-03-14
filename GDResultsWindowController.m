@@ -18,25 +18,28 @@
 #import "QSBCustomPanel.h"
 
 @implementation GDResultsWindowController
+@synthesize languages;
 
 - (id)init {
 	self = [super initWithWindowNibName:@"ResultsWindow"];
 	isSearching = NO;
 	
-	languages = [NSDictionary dictionaryWithObjectsAndKeys:
-				 @"ar",    @"Arabic",
-				 @"zh-CN", @"Chinese (Simplified)",
-				 @"zh-TW", @"Chinese (Traditional)",
-				 @"fr",    @"French",
-				 @"de",    @"German",
-				 @"pt",    @"Portuguese",
-				 @"ru",    @"Russian",
-				 @"es",    @"Spanish",
-				 nil];
+    NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:@"ar", @"Arabic",
+                          @"zh-CN", @"Chinese (Simplified)",
+                          @"zh-TW", @"Chinese (Traditional)",
+                          @"fr",    @"French",
+                          @"de",    @"German",
+                          @"pt",    @"Portuguese",
+                          @"ru",    @"Russian",
+                          @"es",    @"Spanish", nil];
+	self.languages = dict;
+    [dict release];
 	return self;
 }
 
 - (void)dealloc {
+    [languages release];
+    
 	[super dealloc];
 }
 
@@ -87,8 +90,7 @@
 	[[NSAnimationContext currentContext] gtm_setDuration:kGDShowDuration
 											   eventMask:kGTMLeftMouseUpAndKeyDownMask];
 	[[window animator] setAlphaValue:[[NSUserDefaults standardUserDefaults] floatForKey:@"AlphaValue"]];
-	NSRect newFrame
-    = [queryWindowController setResultsWindowFrameWithHeight:NSHeight(frame)];
+	NSRect newFrame = [queryWindowController setResultsWindowFrameWithHeight:NSHeight(frame)];
 	
 	NSView *resultsView = [window contentView];
 	frame = [resultsView frame];
@@ -102,7 +104,7 @@
 
 	NSString *language = [[NSUserDefaults standardUserDefaults]
 							objectForKey:@"Language"];
-	NSString *locale   = [languages objectForKey:language];
+	NSString *locale   = [self.languages objectForKey:language];
 	
 	NSString *url = [[NSString alloc]initWithFormat: 
 		 @"http://www.google.com/dictionary?langpair=en|%@&q=%@&hl=en&aq=f",

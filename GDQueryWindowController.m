@@ -193,6 +193,10 @@ static NSString *const kGDResetQueryTimeoutPrefKey
 		[queryWindow setIgnoresMouseEvents:NO];
 		[queryWindow makeKeyAndOrderFront:nil];
 		[queryWindow setAlphaValue: [[NSUserDefaults standardUserDefaults] floatForKey:@"AlphaValue"]];
+        
+        if (![[queryTextField string] isEqualTo:@""]) {
+            [resultsWindowController showResultsWindow:self];
+        }
 	} else {
 		// Bring whatever modal up front.
 		[NSApp activateIgnoringOtherApps:YES];

@@ -19,6 +19,8 @@
 	NSDictionary *languages;
 }
 
+@property (retain) NSDictionary *languages;
+
 - (IBAction)hideResultsWindow:(id)sender;
 - (IBAction)showResultsWindow:(id)sender;
 
