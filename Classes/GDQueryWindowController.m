@@ -27,8 +27,6 @@ __asm__(".weak_reference _OBJC_CLASS_$_QLPreviewPanel");
 const NSTimeInterval kGDShowDuration = 0.1;
 const NSTimeInterval kGDHideDuration = 0.3;
 
-static NSString * const kGDHideGDWhenInactivePrefKey = @"hideQSBWhenInactive";
-
 static NSString * const kGDQueryWindowFrameTopPrefKey
 = @"GDSearchWindow Top GDSearchResultsWindow";
 static NSString * const kGDQueryWindowFrameLeftPrefKey
@@ -210,6 +208,10 @@ static NSString *const kGDResetQueryTimeoutPrefKey
 		return;
 	}
 	
+	BOOL alwaysOnTop = [[NSUserDefaults standardUserDefaults]
+							boolForKey:kGDAlwaysOnTopPrefKey];
+	if (alwaysOnTop) {return;}
+	
 	// Must be called BEFORE resignAsKeyWindow otherwise we call hide again
 	[queryWindow setIgnoresMouseEvents:YES];
 	[queryWindow setCanBecomeKeyWindow:NO];
@@ -276,19 +278,6 @@ static NSString *const kGDResetQueryTimeoutPrefKey
 		[self checkFindPasteboard:nil];
 		if (insertFindPasteBoardString) {
 			insertFindPasteBoardString = NO;
-			//NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
-//			NSArray *classes = [[NSArray alloc] initWithObjects:[NSString class], nil];
-//			NSDictionary *options = [NSDictionary dictionary];
-//			NSArray *copiedItems = [pasteboard readObjectsForClasses:classes options:options];
-//			if (copiedItems != nil) {
-//				NSString *text = [copiedItems objectAtIndex:0];
-//				if([text length] < 40) {
-//					[queryTextField selectAll:self];
-//					[queryTextField insertText:text];
-//					[queryTextField selectAll:self];
-//					[self startSearching:text];
-//				}
-//			}
 		}
 	} else if ([queryWindow isVisible]) {
 		NSLog(@"hide");
@@ -420,15 +409,7 @@ static NSString *const kGDResetQueryTimeoutPrefKey
 
 - (void)applicationWillResignActive:(NSNotification *)notification {
 	if ([[self window] isVisible]) {
-		BOOL hideWhenInactive = YES;
-		NSNumber *hideNumber = [[NSUserDefaults standardUserDefaults]
-								objectForKey:kGDHideGDWhenInactivePrefKey];
-		if (hideNumber) {
-			hideWhenInactive = [hideNumber boolValue];
-		}
-		if (hideWhenInactive) {
-			[self hideSearchWindow:self];
-		}
+		[self hideSearchWindow:self];
 	}
 }
 

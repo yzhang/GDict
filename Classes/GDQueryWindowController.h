@@ -12,6 +12,8 @@ extern const NSTimeInterval kGDAppearDelay;
 extern const NSTimeInterval kGDShowDuration;
 extern const NSTimeInterval kGDHideDuration;
 
+#define kGDAlwaysOnTopPrefKey @"GDAlwaysOnTop"
+
 @class GDResultsWindowController;
 @class QSBTextField;
 

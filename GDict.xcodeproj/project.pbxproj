@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -83,6 +83,7 @@
 		04D5095413223A1E002331B9 /* GDict.css in Resources */ = {isa = PBXBuildFile; fileRef = 04D5095313223A1E002331B9 /* GDict.css */; };
 		04D6BE091313F896004F8E1F /* PreferencesWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 04D6BE081313F896004F8E1F /* PreferencesWindow.nib */; };
 		04DCC43B130640AF006EAAF3 /* statusIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 04DCC43A130640AF006EAAF3 /* statusIcon.icns */; };
+		04F0443B132F6CA6001FA409 /* ChangeLog in Resources */ = {isa = PBXBuildFile; fileRef = 04F0443A132F6CA6001FA409 /* ChangeLog */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -228,6 +229,7 @@
 		04D5095313223A1E002331B9 /* GDict.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = GDict.css; sourceTree = "<group>"; };
 		04D6BE081313F896004F8E1F /* PreferencesWindow.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = PreferencesWindow.nib; sourceTree = "<group>"; };
 		04DCC43A130640AF006EAAF3 /* statusIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = statusIcon.icns; sourceTree = "<group>"; };
+		04F0443A132F6CA6001FA409 /* ChangeLog */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChangeLog; sourceTree = "<group>"; };
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -521,6 +523,7 @@
 				04AD83D1131240AA000D5B10 /* timeout.html */,
 				04D6BE081313F896004F8E1F /* PreferencesWindow.nib */,
 				04D5095313223A1E002331B9 /* GDict.css */,
+				04F0443A132F6CA6001FA409 /* ChangeLog */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -567,7 +570,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "GDict" */;
-			compatibilityVersion = "Xcode 3.0";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -607,6 +610,7 @@
 				04AD83D2131240AB000D5B10 /* timeout.html in Resources */,
 				04D6BE091313F896004F8E1F /* PreferencesWindow.nib in Resources */,
 				04D5095413223A1E002331B9 /* GDict.css in Resources */,
+				04F0443B132F6CA6001FA409 /* ChangeLog in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -725,7 +729,7 @@
 		C01FCF4C08A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dingding Ye (MWH8ZY5J3Z)";
+				CODE_SIGN_IDENTITY = "Don't Code Sign";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -748,6 +752,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CODE_SIGN_IDENTITY = "Don't Code Sign";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -762,7 +767,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Yuanyi Zhang";
+				CODE_SIGN_IDENTITY = "Don't Code Sign";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_GC = required;

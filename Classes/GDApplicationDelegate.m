@@ -57,6 +57,7 @@ NSString *const kGDBeenLaunchedPrefKey = @"QSBBeenLaunchedPrefKey";
 							  dictionaryWithObjectsAndKeys:
 							    [NSNumber numberWithInt:30],    @"LoadingTimeout",
 								[NSNumber numberWithFloat:0.9], @"AlphaValue",
+								[NSNumber numberWithBool:NO], kGDAlwaysOnTopPrefKey,
 								[NSNumber numberWithBool:kQSBIconInMenubarDefault], kQSBIconInMenubarKey,
 							    [NSNumber numberWithBool:kQSBIconInDockDefault], kQSBIconInDockKey,
 								[NSNumber numberWithUnsignedInt:524320], kQSBHotKeyModifierFlagsKey,
