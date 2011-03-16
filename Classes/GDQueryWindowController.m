@@ -446,10 +446,10 @@ static NSString *const kGDResetQueryTimeoutPrefKey
 	BOOL searchWindowActive = ![[self window] ignoresMouseEvents];
 	if (action == showSearchWindowSel && searchWindowActive) {
 		[menuItem setAction:hideSearchWindowSel];
-		[menuItem setTitle:@"Hide GDict"];
+		[menuItem setTitle:@" Hide GDict"];
 	} else if (action == hideSearchWindowSel && !searchWindowActive) {
 		[menuItem setAction:showSearchWindowSel];
-		[menuItem setTitle:@"Show GDict"];
+		[menuItem setTitle:@" Show GDict"];
 	}
 	
 	return valid;

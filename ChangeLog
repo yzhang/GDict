@@ -1,5 +1,7 @@
-1.1 
+1.0.1 
 
-03.15 允许设置窗口悬停 Yuanyi
+1. 输入框不为空时不隐藏结果窗口 Dingding
+2. 精简显示结果 Dingding
+3. 允许设置窗口悬停 Yuanyi
 
 1.0 Initial Release
