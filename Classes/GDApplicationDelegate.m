@@ -249,4 +249,8 @@ NSString *const kGDBeenLaunchedPrefKey = @"QSBBeenLaunchedPrefKey";
 	[prefsWindowController showPreferences:sender];
 	[NSApp activateIgnoringOtherApps:YES];
 }
+
+- (IBAction)copySelectedText:(id)sender {
+    [queryWindowController copySelectedText:sender];
+}
 @end

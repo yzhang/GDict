@@ -47,6 +47,7 @@ extern NSString *const kGDBeenLaunchedPrefKey;
 
 - (IBAction)showPreferences:(id)sender;
 
+- (IBAction)copySelectedText:(id)sender;
 @end
 
 #pragma mark Notifications

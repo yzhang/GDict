@@ -70,4 +70,6 @@ extern const NSTimeInterval kGDHideDuration;
 
 - (void)prepareSearching;
 
+- (IBAction)copySelectedText:(id)sender;
+
 @end

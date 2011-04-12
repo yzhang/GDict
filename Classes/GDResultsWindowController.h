@@ -20,6 +20,7 @@
 }
 
 @property (retain) NSDictionary *languages;
+@property (retain) IBOutlet WebView *resultsWebView;
 
 - (IBAction)hideResultsWindow:(id)sender;
 - (IBAction)showResultsWindow:(id)sender;

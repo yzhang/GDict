@@ -1,3 +1,7 @@
+1.0.2
+
+1. 对Ctrl-C进行判断，如果WebKit选择不为空，则Copy WebKit中内容，否则Copy编辑框中文字 Yuanyi
+
 1.0.1 
 
 1. 输入框不为空时不隐藏结果窗口 Dingding

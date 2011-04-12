@@ -12,6 +12,8 @@
 #import "QSBTextField.h"
 #import "GDResultsWindowController.h"
 
+#import <WebKit/WebKit.h>
+
 #import <objc/runtime.h>
 #import <Quartz/Quartz.h>
 
@@ -352,8 +354,9 @@ static NSString *const kGDResetQueryTimeoutPrefKey
 	
 	[keeper invalidate];
 	NSWindow *queryWindow = [self window];
-	[queryTextField setEditable:YES];
 	[queryWindow makeFirstResponder: queryTextField];
+
+    [queryTextField setEditable:YES];
 	[spinner stopAnimation:self];
 	isSearching = NO;
 }
@@ -377,9 +380,23 @@ static NSString *const kGDResetQueryTimeoutPrefKey
 }
 
 - (void)textDidEndEditing:(NSNotification *)notification {
+    if(isSearching) return;
+    
 	[self resetSearching];
 	[queryTextField selectAll:self];
 	[self startSearching:[queryTextField string]];
+}
+
+- (IBAction)copySelectedText:(id)sender {
+    WebView *webView    = [resultsWindowController resultsWebView];
+    DOMRange *domRange  = [webView selectedDOMRange];
+    NSString *selection = [domRange toString];
+    
+    if([selection length] > 0) {
+        [webView copy:sender];
+    } else {
+        [queryTextField copy:sender];
+    }
 }
 
 - (void)cancelOperation:(id)sender {

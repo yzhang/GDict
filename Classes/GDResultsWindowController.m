@@ -18,7 +18,7 @@
 #import "QSBCustomPanel.h"
 
 @implementation GDResultsWindowController
-@synthesize languages;
+@synthesize languages, resultsWebView;
 
 - (id)init {
 	self = [super initWithWindowNibName:@"ResultsWindow"];
