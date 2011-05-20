@@ -10,9 +10,6 @@
 
 
 @interface GDApplication : NSApplication {
-
 }
-
-//-(IBAction)hideSearchWindow:(id)sender;
 
 @end

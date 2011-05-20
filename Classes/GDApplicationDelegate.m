@@ -236,8 +236,6 @@ NSString *const kGDBeenLaunchedPrefKey = @"QSBBeenLaunchedPrefKey";
 - (void)keysChangedWhileActive:(NSEvent*)event {}
 
 - (IBAction)orderFrontStandardAboutPanel:(id)sender {
-	//[self hideSearchWindow];
-	//[prefsWindowController hidePreferences];
 	[NSApp activateIgnoringOtherApps:YES];
 	[NSApp orderFrontStandardAboutPanelWithOptions:nil];
 }

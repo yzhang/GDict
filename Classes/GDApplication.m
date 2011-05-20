@@ -125,7 +125,10 @@ static const size_t kApplicationEventTypeSpecSize
 			if (SameProcess(&psn, &myPSN, &equal) == noErr && !equal) {
 				GDApplicationDelegate *delegate
 				= (GDApplicationDelegate *)[self delegate];
-				[[delegate queryWindowController] hideSearchWindow:self];
+                BOOL alwaysOnTop = [[NSUserDefaults standardUserDefaults]                        boolForKey:kGDAlwaysOnTopPrefKey];
+                if(!alwaysOnTop) {
+                    [[delegate queryWindowController] hideSearchWindow:self];
+                }
 			}
 		}
 	}

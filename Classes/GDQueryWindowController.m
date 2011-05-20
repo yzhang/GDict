@@ -41,6 +41,7 @@ static NSString *const kGDResetQueryTimeoutPrefKey
 
 @interface GDQueryWindowController ()
 - (BOOL)firstLaunch;
+- (BOOL)alwaysOnTop;
 
 // Checks the find pasteboard to see if it's changed
 - (void)checkFindPasteboard:(NSTimer *)timer;
@@ -178,6 +179,10 @@ static NSString *const kGDResetQueryTimeoutPrefKey
 	return !beenLaunched;
 }
 
+- (BOOL)alwaysOnTop {
+    return [[NSUserDefaults standardUserDefaults]                        boolForKey:kGDAlwaysOnTopPrefKey];
+}
+
 - (IBAction)qsb_clearSearchString:(id)sender {}
 
 - (IBAction)showSearchWindow:(id)sender {
@@ -209,10 +214,8 @@ static NSString *const kGDResetQueryTimeoutPrefKey
 	if ([queryWindow ignoresMouseEvents]) {
 		return;
 	}
-	
-	BOOL alwaysOnTop = [[NSUserDefaults standardUserDefaults]
-							boolForKey:kGDAlwaysOnTopPrefKey];
-	if (alwaysOnTop) {return;}
+    
+    NSLog(@"hide");
 	
 	// Must be called BEFORE resignAsKeyWindow otherwise we call hide again
 	[queryWindow setIgnoresMouseEvents:YES];
@@ -265,6 +268,7 @@ static NSString *const kGDResetQueryTimeoutPrefKey
 
 - (void)hitHotKey:(id)sender {
 	if (![[self window] ignoresMouseEvents]) {
+        NSLog(@"hide4");
 		[self hideSearchWindow:self];
 	} else {
 		[self showSearchWindow:self];
@@ -281,9 +285,7 @@ static NSString *const kGDResetQueryTimeoutPrefKey
 		if (insertFindPasteBoardString) {
 			insertFindPasteBoardString = NO;
 		}
-	} else if ([queryWindow isVisible]) {
-		NSLog(@"hide");
-		// We check for QLPreviewPanel because we don't want to hide for quicklook
+	} else if ([queryWindow isVisible] && ![self alwaysOnTop]) {
 		[self hideSearchWindow:self];
 	}
 	
@@ -294,7 +296,7 @@ static NSString *const kGDResetQueryTimeoutPrefKey
 	// blow everything away (http://b/issue?id=1567906), otherwise we will
 	// select all of the text, so the next time the user brings us up we will
 	// immediately replace their selection with what they type.
-	if (![[self window] ignoresMouseEvents]) {
+	if (![[self window] ignoresMouseEvents] && ![self alwaysOnTop]) {
 		[self hideSearchWindow:self];
 	}
 }
@@ -403,6 +405,7 @@ static NSString *const kGDResetQueryTimeoutPrefKey
 	if(isSearching) {
 		[self stopSearching];
 	} else {
+        NSLog(@"hide2");
 		[self hideSearchWindow:self];
 	}
 }
@@ -425,7 +428,7 @@ static NSString *const kGDResetQueryTimeoutPrefKey
 }
 
 - (void)applicationWillResignActive:(NSNotification *)notification {
-	if ([[self window] isVisible]) {
+	if ([[self window] isVisible] && ![self alwaysOnTop]) {
 		[self hideSearchWindow:self];
 	}
 }
