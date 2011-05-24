@@ -84,7 +84,6 @@
 		[queryWindow addChildWindow:window ordered:NSWindowBelow];
 	}
 	
-	//NSRect frame = [window frame];
 	NSRect frame = [window frame];
 	[NSAnimationContext beginGrouping];
 	[[NSAnimationContext currentContext] gtm_setDuration:kGDShowDuration

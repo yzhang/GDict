@@ -124,13 +124,20 @@ static NSString *const kGDResetQueryTimeoutPrefKey
 	NSPasteboard *findPasteBoard = [NSPasteboard generalPasteboard];
 	findPasteBoardChangeCount = [findPasteBoard changeCount] - 1;
 	isSearching = NO;
+    
+    NSWindow* resultWindow = [resultsWindowController window];
+    if (![resultWindow parentWindow]) {
+		NSWindow *queryWindow = [self window];
+		[queryWindow addChildWindow:resultWindow ordered:NSWindowBelow];
+	}
 }
 
 - (void)windowDidLoad {
 	NSWindow *queryWindow = [self window];
 	
 	if ([self firstLaunch]) {
-		[queryWindow center];
+		// TODO: Show welcome window.
+        [queryWindow center];
 	} else {
 		NSPoint topLeft = NSMakePoint(
 									  [[NSUserDefaults standardUserDefaults]
@@ -230,7 +237,7 @@ static NSString *const kGDResetQueryTimeoutPrefKey
 	[resultsWindowController hideResultsWindow:self];
 }
 
-- (NSRect)setResultsWindowFrameWithHeight:(CGFloat)newHeight {
+- (NSRect)setResultsWindowFrameWithHeight:(CGFloat)newHeight{
 	NSWindow *queryWindow = [self window];
 	NSWindow *resultsWindow = [resultsWindowController window];
 	BOOL resultsVisible = [resultsWindow isVisible];
@@ -259,16 +266,17 @@ static NSString *const kGDResetQueryTimeoutPrefKey
 											 deltaPoint.x, deltaPoint.y);
 			[[queryWindow animator] setFrame:queryFrame display:YES];
 		}
-		NSPoint upperLeft = NSMakePoint(NSMinX(actualFrame), NSMaxY(actualFrame));
-		[resultsWindow setFrameTopLeftPoint:upperLeft];
-		[[resultsWindow animator] setFrame:actualFrame display:YES];
+        
+        NSRect queryFrame = [queryWindow frame];
+        NSPoint upperLeft = NSMakePoint(NSMinX(queryFrame), NSMaxY(queryFrame));
+        [resultsWindow setFrameTopLeftPoint:upperLeft];
+        [[resultsWindow animator] setFrame:actualFrame display:YES];
 	}
 	return actualFrame;
 }
 
 - (void)hitHotKey:(id)sender {
 	if (![[self window] ignoresMouseEvents]) {
-        NSLog(@"hide4");
 		[self hideSearchWindow:self];
 	} else {
 		[self showSearchWindow:self];
@@ -405,7 +413,6 @@ static NSString *const kGDResetQueryTimeoutPrefKey
 	if(isSearching) {
 		[self stopSearching];
 	} else {
-        NSLog(@"hide2");
 		[self hideSearchWindow:self];
 	}
 }
