@@ -15,6 +15,9 @@
 @private
 	IBOutlet GDQueryWindowController *queryWindowController;
 	IBOutlet WebView *resultsWebView;
+    IBOutlet NSButton *prev;
+    IBOutlet NSButton *next;
+    
 	BOOL isSearching;
 	NSDictionary *languages;
 }

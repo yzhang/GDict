@@ -136,24 +136,10 @@ static NSString *const kGDResetQueryTimeoutPrefKey
 	NSWindow *queryWindow = [self window];
 	
 	if ([self firstLaunch]) {
-		// TODO: Show welcome window.
-        [queryWindow center];
-	} else {
-		NSPoint topLeft = NSMakePoint(
-									  [[NSUserDefaults standardUserDefaults]
-									   floatForKey:kGDQueryWindowFrameLeftPrefKey],
-									  [[NSUserDefaults standardUserDefaults]
-									   floatForKey:kGDQueryWindowFrameTopPrefKey]);
-		[queryWindow setFrameTopLeftPoint:topLeft];
-		
-		// Now insure that the window's frame is fully visible.
-		NSRect queryFrame = [queryWindow frame];
-		NSRect actualFrame = [self fullyExposedFrameForFrame:queryFrame
-											  respectingDock:YES
-													onScreen:[queryWindow screen]];
-		[queryWindow setFrame:actualFrame display:YES];
+        // TODO: Show welcome window.
 	}
-	
+
+	[queryWindow center];
 	[queryWindow setLevel:kCGStatusWindowLevel + 2];
 	// Support spaces on Leopard.
 	// http://b/issue?id=648841
@@ -162,6 +148,9 @@ static NSString *const kGDResetQueryTimeoutPrefKey
 	[queryWindow setMovableByWindowBackground:YES];
 	[queryWindow invalidateShadow];
 	[queryWindow setAlphaValue:0.0];
+    
+    NSWindow *resultWindow = [resultsWindowController window];
+    [queryWindow addChildWindow:resultWindow ordered:NSWindowBelow];
 }
 
 - (void)windowDidMove:(NSNotification *)notification {
@@ -218,7 +207,7 @@ static NSString *const kGDResetQueryTimeoutPrefKey
 
 - (IBAction)hideSearchWindow:(id)sender {
 	QSBCustomPanel *queryWindow = (QSBCustomPanel *)[self window];
-	if ([queryWindow ignoresMouseEvents]) {
+	if ([queryWindow ignoresMouseEvents] || isSearching) {
 		return;
 	}
     
@@ -386,7 +375,7 @@ static NSString *const kGDResetQueryTimeoutPrefKey
 }
 
 - (void)textDidChange:(NSNotification *)notification {
-	//[self resetSearching];
+	[self resetSearching];
 }
 
 - (void)textDidEndEditing:(NSNotification *)notification {

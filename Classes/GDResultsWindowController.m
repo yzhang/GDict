@@ -34,6 +34,7 @@
                           @"es",    @"Spanish", nil];
 	self.languages = dict;
     [dict release];
+    
 	return self;
 }
 
@@ -79,28 +80,21 @@
 	NSWindow *window = [self window];
 	if (![window ignoresMouseEvents]) return;
 	[window setIgnoresMouseEvents:NO];
-	if (![window parentWindow]) {
-		NSWindow *queryWindow = [queryWindowController window];
-		[queryWindow addChildWindow:window ordered:NSWindowBelow];
-	}
 	
-	NSRect frame = [window frame];
-	[NSAnimationContext beginGrouping];
-	[[NSAnimationContext currentContext] gtm_setDuration:kGDShowDuration
-											   eventMask:kGTMLeftMouseUpAndKeyDownMask];
+	//NSRect frame = [window frame];
 	[[window animator] setAlphaValue:[[NSUserDefaults standardUserDefaults] floatForKey:@"AlphaValue"]];
-	NSRect newFrame = [queryWindowController setResultsWindowFrameWithHeight:NSHeight(frame)];
+	//NSRect newFrame = [queryWindowController setResultsWindowFrameWithHeight:NSHeight(frame)];
 	
-	NSView *resultsView = [window contentView];
-	frame = [resultsView frame];
-	frame.size.width = NSWidth(newFrame);
-	[resultsView setFrame:frame];
-	[NSAnimationContext endGrouping];
+	//NSView *resultsView = [window contentView];
+	//frame = [resultsView frame];
+	//frame.size.width = NSWidth(newFrame);
+	//[resultsView setFrame:frame];
 }
 
 - (void)startSearching:(NSString*)queryString {
 	[self showResultsWindow:self];
-
+    [resultsWebView setHidden:YES];
+    
 	NSString *language = [[NSUserDefaults standardUserDefaults]
 							objectForKey:@"Language"];
 	NSString *locale   = [self.languages objectForKey:language];
@@ -130,10 +124,11 @@
 
 - (void)resetSearchResults {
 	[self hideResultsWindow:self];
-	[resultsWebView setMainFrameURL:@"about:blank"];
+    [resultsWebView setHidden:YES];
 }
 
 - (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame {
+    [resultsWebView setHidden:NO];
 	[queryWindowController prepareSearching];
 }
 

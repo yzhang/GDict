@@ -3,12 +3,12 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1060</int>
 		<string key="IBDocument.SystemVersion">10J869</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1305</string>
+		<string key="IBDocument.InterfaceBuilderVersion">1306</string>
 		<string key="IBDocument.AppKitVersion">1038.35</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
-			<string key="NS.object.0">1305</string>
+			<string key="NS.object.0">1306</string>
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -45,8 +45,8 @@
 			<object class="NSWindowTemplate" id="149614641">
 				<int key="NSWindowStyleMask">1</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{131, 506}, {426, 96}}</string>
-				<int key="NSWTFlags">603984896</int>
+				<string key="NSWindowRect">{{131, 569}, {426, 96}}</string>
+				<int key="NSWTFlags">606606336</int>
 				<string key="NSWindowTitle">Window</string>
 				<string key="NSWindowClass">QSBCustomPanel</string>
 				<nil key="NSViewClass"/>
@@ -73,7 +73,6 @@
 							<string key="NSFrame">{{15, 0}, {96, 96}}</string>
 							<reference key="NSSuperview" ref="1028285482"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSImageCell" key="NSCell" id="651573272">
 								<int key="NSCellFlags">130560</int>
@@ -147,7 +146,7 @@
 															<string key="NSFrameSize">{0, 77}</string>
 															<reference key="NSSuperview" ref="480875846"/>
 															<reference key="NSWindow"/>
-															<reference key="NSNextKeyView" ref="717816351"/>
+															<reference key="NSNextKeyView" ref="1047852841"/>
 															<object class="NSTextContainer" key="NSTextContainer" id="725730816">
 																<object class="NSLayoutManager" key="NSLayoutManager">
 																	<object class="NSTextStorage" key="NSTextStorage">
@@ -270,7 +269,7 @@
 											<string key="NSFrame">{{2, 0}, {278, 32}}</string>
 											<reference key="NSSuperview" ref="547148683"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="1047852841"/>
+											<reference key="NSNextKeyView" ref="480875846"/>
 											<int key="NSsFlags">64</int>
 											<reference key="NSVScroller" ref="1047852841"/>
 											<reference key="NSHScroller" ref="286992443"/>
@@ -533,6 +532,8 @@
 					<string>24.IBPluginDependency</string>
 					<string>24.IBViewBoundsToFrameTransform</string>
 					<string>3.IBEditorWindowLastContentRect</string>
+					<string>3.IBNSWindowAutoPositionCentersHorizontal</string>
+					<string>3.IBNSWindowAutoPositionCentersVertical</string>
 					<string>3.IBPluginDependency</string>
 					<string>3.IBWindowTemplateEditedContentRect</string>
 					<string>3.NSWindowTemplate.visibleAtLaunch</string>
@@ -569,6 +570,8 @@
 						<bytes key="NSTransformStruct">P4AAAL+AAABDBQAAwbAAAA</bytes>
 					</object>
 					<string>{{372, 504}, {426, 96}}</string>
+					<boolean value="NO"/>
+					<boolean value="NO"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{372, 504}, {426, 96}}</string>
 					<boolean value="NO"/>
@@ -765,11 +768,15 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>next</string>
+							<string>prev</string>
 							<string>queryWindowController</string>
 							<string>resultsWebView</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSButton</string>
+							<string>NSButton</string>
 							<string>GDQueryWindowController</string>
 							<string>WebView</string>
 						</object>
@@ -778,11 +785,21 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>next</string>
+							<string>prev</string>
 							<string>queryWindowController</string>
 							<string>resultsWebView</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">next</string>
+								<string key="candidateClassName">NSButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">prev</string>
+								<string key="candidateClassName">NSButton</string>
+							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">queryWindowController</string>
 								<string key="candidateClassName">GDQueryWindowController</string>
